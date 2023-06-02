@@ -1,27 +1,18 @@
-name: Continuous Deployment
-
+name: Continious Deployment
 on:
   push:
     branches:
-      - main  # або назва вашої головної гілки
+      - main 
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Build and Deploy
-      run: |
-        mkdir public
-        cp -R * public/
-      env:
-        DEPLOY_DIR: ./public
-
-    - name: Deploy to GitHub Pages
-      uses: JamesIves/github-pages-deploy-action@3.7.1
-      with:
-        branch: gh-pages
-        folder: ${{ env.DEPLOY_DIR }}
+      - name: Build and Continious Deployment
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          branch: gh-pages
+          folder: .
